@@ -16,9 +16,11 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('book');
-            $table->foreignId('student_id');
+            $table->foreignId('student_id')
+                    ->constrained()
+                    ->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
+            $table->softDeletes();                
         });
     }
 
