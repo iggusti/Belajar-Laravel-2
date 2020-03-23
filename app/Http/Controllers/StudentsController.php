@@ -99,9 +99,9 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Student $student)
     {
-        //
+        return view('students.edit', compact('student'));
     }
 
     /**
@@ -111,9 +111,24 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Student $student)
     {
-        //
+        // Validation
+        $request->validate([
+            'nama' => 'required',
+            'nim' => 'required|size:10',
+            'email' => 'required',
+            'jurusan' => 'required'
+        ]);   
+
+        Student::where('id', $student->id)
+                ->update([
+                    'nama' => $request->nama,
+                    'nim' => $request->nim,
+                    'email' => $request->email,
+                    'jurusan' => $request->jurusan
+                ]);
+        return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Diubah!');
     }
 
     /**
@@ -122,8 +137,9 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        //
+        Student::destroy($student->id);
+        return redirect('/students')->with('status', 'Data Mahasiswa Berhasil Dihapus!');
     }
 }
