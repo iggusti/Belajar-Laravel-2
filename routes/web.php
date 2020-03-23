@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('login', 'AuthController@index');
-Route::post('post-login', 'AuthController@postLogin'); 
-Route::get('registration', 'AuthController@registration');
-Route::post('post-registration', 'AuthController@postRegistration'); 
-Route::get('dashboard', 'AuthController@dashboard'); 
-Route::get('logout', 'AuthController@logout');
+Route::get('/', 'AuthController@index');
+Route::post('/login', 'AuthController@login'); 
+Route::get('/registration', 'AuthController@registration');
+Route::post('/registration', 'AuthController@postRegistration'); 
+Route::get('/dashboard', 'AuthController@dashboard'); 
+Route::get('/logout', 'AuthController@logout');
 
 Route::get('/students', 'StudentsController@index');
 Route::get('/students/create', 'StudentsController@create');

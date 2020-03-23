@@ -24,7 +24,7 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Register here!</h3>
-               <form action="{{url('post-registration')}}" method="POST" id="regForm">
+               <form action="{{url('/registration')}}" method="POST" id="regForm">
                  {{ csrf_field() }}
                 <div class="form-label-group">
                   <input type="text" id="inputName" name="name" class="form-control" placeholder="Full name" autofocus>
@@ -55,7 +55,7 @@
  
                 <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign Up</button>
                 <div class="text-center">If you have an account?
-                  <a class="small" href="{{url('login')}}">Sign In</a></div>
+                  <a class="small" href="{{url('/')}}">Sign In</a></div>
               </form>
             </div>
           </div>
