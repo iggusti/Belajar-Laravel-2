@@ -35,3 +35,5 @@ Route::patch('/students/{student}', 'StudentsController@update');
 // Route::resource('students', 'StudentsController');
 
 Route::get('/books', 'BooksController@index');
+
+Route::get('/mahasiswa', 'MahasiswaController@index');
