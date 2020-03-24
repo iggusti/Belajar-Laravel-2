@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-5">
             <h1 class="mt-3">Daftar Mahasiswa</h1>
-
+            <h2 class="mt-3">Welcome {{ ucfirst(Auth()->user()->name) }}</h2>
             <a href="/students/create" class="btn btn-primary my-3">Tambah Data Mahasiswa</a>
            
             @if (session('status'))

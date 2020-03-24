@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Validator,Redirect,Response;
 
 class StudentsController extends Controller
 {
@@ -14,16 +16,22 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        if(Auth::check()){
+            
+            $students = Student::all();
 
-        // dump($students);
+            // dump($students);
 
-        $students = $students->sortBy('nama');
+            $students = $students->sortBy('nama');
+            
+
+            // return view('students.index', ['students' => $students]);
         
-
-        // return view('students.index', ['students' => $students]);
-       
-        return view('students.index', compact('students'));
+            return view('students.index', compact('students'));
+        }
+        else{
+           return Redirect::to("/")->withSuccess('Opps! You do not have access');
+        }
     }
 
     /**
@@ -33,7 +41,12 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        if(Auth::check()){
+            return view('students.create');
+        }
+        else{
+           return Redirect::to("/")->withSuccess('Opps! You do not have access');
+        }
     }
 
     /**
@@ -90,7 +103,13 @@ class StudentsController extends Controller
      */
     public function show(Student $student)
     {
-        return view('students.show', compact('student'));
+        if(Auth::check()){
+            return view('students.show', compact('student'));
+        }
+        else{
+           return Redirect::to("/")->withSuccess('Opps! You do not have access');
+        }
+
     }
 
     /**
